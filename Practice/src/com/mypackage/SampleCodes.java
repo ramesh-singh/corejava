@@ -10,7 +10,7 @@ public class SampleCodes {
 	int test_;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		System.out.println("This is a class to test basic core java code snippets.");
 
 	}
 
