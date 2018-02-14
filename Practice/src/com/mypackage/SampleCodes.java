@@ -1,5 +1,6 @@
 package com.mypackage;
 
+import java.*;   // This is legal but will not search across all packages.
 public class SampleCodes {
 	
 	//testing if variable name can contain special symbols after first letter
