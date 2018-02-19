@@ -12,6 +12,9 @@ public class SampleCodes {
 
 	public static void main(String[] args) {
 		System.out.println("This is a class to test basic core java code snippets.");
+		
+		
+		
 
 	}
 
