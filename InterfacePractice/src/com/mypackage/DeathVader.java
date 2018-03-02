@@ -6,6 +6,7 @@ public class DeathVader implements Pet {
 	public void beFriendly() {
 		System.out.println("Be friendly Death Vader.");
 		
+		
 	}
 
 }
