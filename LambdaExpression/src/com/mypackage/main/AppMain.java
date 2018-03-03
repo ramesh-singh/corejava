@@ -55,6 +55,13 @@ public class AppMain {
 	  				.collect(Collectors.toList());
 	  				
 	  	    System.out.println(names3);
+	  	    
+	  //printing the names of males
+	  	    persons.stream().
+	  	    filter(person -> person.getGender().equals(Gender.MALE))
+	  	    .map(Person:: getName).
+	  	    forEach( System.out::println);
+	 
 	}
 
 }
