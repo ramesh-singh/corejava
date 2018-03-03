@@ -40,11 +40,21 @@ public class AppMain {
 		System.out.println(names);
 		
 		//Person's name with age> 18 with streams
-		List<String> names2= persons.stream().filter(abc -> abc.getAge()>18).map(people -> people.getName()).
-				map(people -> people.toUpperCase()).collect(Collectors.toList());
+		List<String> names2= persons.stream().filter(abc -> abc.getAge()>18)
+				.map(people -> people.getName()).
+				map(people -> people.toUpperCase())
+				.collect(Collectors.toList());
 				
 	    System.out.println(names2);
 		
+	    
+	  //Person's name with age> 18 with streams
+	  		List<String> names3= persons.stream().filter(person -> person.getAge()>18 && person.getGender().equals(Gender.FEMALE))
+	  				.map(Person::getName).
+	  				map(String :: toUpperCase)
+	  				.collect(Collectors.toList());
+	  				
+	  	    System.out.println(names3);
 	}
 
 }
