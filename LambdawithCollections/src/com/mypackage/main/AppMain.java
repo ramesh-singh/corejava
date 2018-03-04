@@ -3,7 +3,8 @@ package com.mypackage.main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
 
 import com.mypackage.domain.Gender;
 import com.mypackage.domain.Person;
@@ -34,21 +35,42 @@ public class AppMain {
 		System.out.println("Printing persons sorted on the basis of firstName");
 		Collections.sort(persons, (person1, person2) -> person1.getName().compareTo(person2.getName()));
 		
-		printConditionally(persons, p -> true);
+		printConditionally(persons, p -> true, p -> System.out.println(p));
 		
 		System.out.println("Printing persons with firstName starts with R");
-		printConditionally(persons, p -> p.getName().startsWith("D"));
+		printConditionally(persons, p -> p.getName().startsWith("D"), p -> System.out.println(p));
+		
+		System.out.println("Printing all feamle");
+		printConditionally(persons, p -> p.getGender().equals(Gender.FEMALE), p -> System.out.println(p.getName()));
 		
 	 
 	}
 	
-	public static void  printConditionally(List<Person> persons, Condition condition){
+	/*public static void  printConditionally(List<Person> persons, Condition condition){
 		for(Person person: persons){
 			if(condition.condition(person)){
 				System.out.println(person);
 			}
 		}
-	}
+	}*/
+	
+	//function with Predicate interface
+	/*public static void  printConditionally(List<Person> persons, Predicate<Person> predicate){
+		for(Person person: persons){
+			if(predicate.test(person)){
+				System.out.println(person);
+			}
+		}
+	}*/
+	
+	//function with Consumer interface
+		public static void  printConditionally(List<Person> persons, Predicate<Person> predicate, Consumer<Person> consumer){
+			for(Person person: persons){
+				if(predicate.test(person)){
+					consumer.accept(person);
+				}
+			}
+		}
 	
 
 }
