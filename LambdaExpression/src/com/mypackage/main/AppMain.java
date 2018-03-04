@@ -31,6 +31,7 @@ public class AppMain {
 		
 		//Person's name with age> 18 without streams
 		List<String> names= new ArrayList<String>();
+		persons.forEach(System.out:: println);
 		
 		for(Person person: persons){
 			if(person.getAge()>18){
