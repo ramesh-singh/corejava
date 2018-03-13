@@ -37,7 +37,7 @@ public class AppMain {
 		
 		printConditionally(persons, p -> true, p -> System.out.println(p));
 		
-		System.out.println("Printing persons with firstName starts with R");
+		System.out.println("Printing persons with firstName starts with D");
 		printConditionally(persons, p -> p.getName().startsWith("D"), p -> System.out.println(p));
 		
 		System.out.println("Printing all feamle");
