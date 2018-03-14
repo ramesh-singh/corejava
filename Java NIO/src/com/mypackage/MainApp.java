@@ -1,10 +1,13 @@
 package com.mypackage;
 
 import java.io.IOException;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.nio.file.attribute.FileTime;
+import java.util.Date;
 
 public class MainApp {
 	public static void main(String[] args) throws IOException {
@@ -42,7 +45,43 @@ public class MainApp {
 		
 		//Files.copy(directory1, directory5, StandardCopyOption.REPLACE_EXISTING);
 		
+		System.out.println("Using resolve method.");
+		Path absoulte1= Paths.get("/home/ramesh/java.txt");
+		Path absolute2= Paths.get("/home/ramesh/ranjeet/java.txt");
 		
+		System.out.println(absoulte1.resolve(absolute2));
+		System.out.println(absoulte1.relativize(absolute2));
+		
+		System.out.println("Setting last modified in a file.");
+		Path fileModified= Paths.get("fileModified.txt");
+		Files.createFile(fileModified);
+		
+		FileTime fileTime= FileTime.fromMillis(new Date().getTime());
+		Files.setLastModifiedTime(fileModified, fileTime);
+		System.out.println(Files.getLastModifiedTime(fileModified));
+		Files.delete(fileModified);
+		
+		
+		System.out.println("Using DirectoryStream.");
+		Path readDirectory= Paths.get("subDirectory", "files");
+		
+		try(DirectoryStream<Path> stream= Files.newDirectoryStream(readDirectory)){
+			for(Path path: stream){
+				System.out.println(path.getFileName());
+			}
+		}
+		
+		System.out.println("Using DirectoryStream to read files starting with a particular letter.");
+		
+		try(DirectoryStream<Path> stream= Files.newDirectoryStream(readDirectory, "[f]*")){
+			for(Path path: stream){
+				System.out.println(path.getFileName());
+			}
+		}
+		
+		System.out.println("Deleting .class files using SimpleFileVisitor");
+		RemoveFiles files= new RemoveFiles();
+		Files.walkFileTree(Paths.get("subDirectory"), files);
 		
 	}
 
