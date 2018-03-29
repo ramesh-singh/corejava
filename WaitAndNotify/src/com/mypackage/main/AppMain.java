@@ -9,6 +9,12 @@ public class AppMain {
 		Reader reader= new Reader(calculator);
 		Thread t1= new Thread(){
 			public void run(){
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				reader.readTotal();
 			}
 		};

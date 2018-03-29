@@ -9,15 +9,21 @@ public class Reader {
 
 	public void readTotal(){
 		synchronized (calculator) {
+			while(true){
 			try{
 				System.out.println("Waiting for calculation....");
-			calculator.wait();
-			}catch(InterruptedException e){
-				e.printStackTrace();
+				
+					if(calculator.getTotal()==0){
+						calculator.wait();
+					}
+
+				}catch(InterruptedException e){
+					e.printStackTrace();
+				}
+				System.out.println(calculator.getTotal());
 			}
-			System.out.println(calculator.getTotal());
 		}
-		
+
 	}
 
 }
